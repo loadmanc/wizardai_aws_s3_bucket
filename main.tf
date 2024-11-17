@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "wizardai_s3_bucket" {
-  bucket = local.bucket_name
+  bucket = "${local.bucket_prefix}-${local.bucket_name}-${var.environment}"
   tags = {
     Environment = var.environment
   }
@@ -42,6 +42,19 @@ resource "aws_s3_bucket_policy" "wizardai_s3_bucket_policy" {
   })
 }
 
+resource "random_string" "random_value" {
+  length  = 16
+  special = false
+  upper   = false
+  lower   = true
+  numeric  = true
+
+  keepers = {
+    value = var.bucket != "null" ? var.bucket : "default"
+  }
+}
+
 locals {
-  bucket_name = "wizardai-s3-bucket-${var.environment}"
+  bucket_prefix = "wizardai"
+  bucket_name = var.bucket != "null" ? var.bucket : random_string.random_value.result
 }

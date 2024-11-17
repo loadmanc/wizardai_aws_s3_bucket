@@ -28,6 +28,7 @@ module "wizardai_aws_s3_bucket" {
 
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
+| `bucket` | Specifies the name of the S3 bucket to be deployed | `string` | no |
 | `environment` | Specifies the environment(development, staging, production) in which the S3 bucket will be deployed | `string` | yes |
 
 ## Outputs
