@@ -1,5 +1,4 @@
-AWS S3 bucket Terraform module
-===========
+# AWS S3 bucket Terraform module
 
 A Terraform module which creates an S3 bucket on AWS.
 
